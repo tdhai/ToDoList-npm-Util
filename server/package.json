@@ -1,0 +1,24 @@
+{
+  "name": "todolist-npm-util",
+  "version": "1.0.0",
+  "description": "(HaiTruong-todolist-intern-pyco)",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdhai/ToDoList-npm-util.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tdhai/ToDoList-npm-util/issues"
+  },
+  "homepage": "https://github.com/tdhai/ToDoList-npm-util#readme",
+  "dependencies": {
+    "@hapi/hapi": "^18.3.1",
+    "mongoose": "^5.5.13"
+  }
+}
