@@ -18,6 +18,8 @@ exports.plugin={
       }
     })
 
+    
+
     server.route({
       method: 'GET',
       path: '/task/{id}',
@@ -92,6 +94,6 @@ exports.plugin={
       }
     })
   },
-  name: 'api'
+  name: 'tasks'
 }
 

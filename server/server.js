@@ -12,26 +12,29 @@ const server = new Hapi.Server({
 })
 
 server.app.db = mongoose.connect(
-  'mongodb://localhost/hapitest',
-  {useNewUrlParser: true}
+  'mongodb://localhost/to-do-list',
+  { useNewUrlParser: true }
 )
 
-const init = async() =>{
+const init = async () => {
   await server
-  .register(
-    {plugin: require('./routes/tasks')},
-    {
-      routes: {
-        prefix: '/api'
+    .register([
+      {plugin :require('./routes/todo')},
+      {plugin: require('./routes/tasks')},
+      {plugin: require('./routes/accounts')}
+    ] ,
+      {
+        routes: {
+          prefix: '/api'
+        }
       }
-    }
-  )
-  .catch(err=>{
-    console.log(err);
-  })
+    )
+    .catch(err => {
+      console.log(err);
+    })
   await server.start()
   console.log(`Server running at: ${server.info.uri}`)
   // console.log("started");
 }
 
-init() 
+init();
