@@ -9,6 +9,7 @@ exports.plugin={
       method: 'GET',
       path: '/tasks',
       handler: (req, h) => {
+        console.log(Task);
         return Task.find((err, res) => {
           if(err){
             return err;

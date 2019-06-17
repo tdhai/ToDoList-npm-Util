@@ -3,25 +3,28 @@ const mongoose = require('mongoose')
 const Account = require('../models/Account')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const Boom = require('@hapi/boom')
 
 var privateKey = "abccd";
 
 const Authentication = (req, h) => {
   var token = req.headers['authorization'];
   return jwt.verify(token, privateKey, function (err, decoded) {
+    //console.log(err);
     if (err) {
-      return { err };
+      // return { err };
+      return Boom.badRequest(err)
     }
     let loginName = decoded.data;
     return Account.findOne({
       loginName: loginName
-    }).then(LogedIn => {
-      return Account.find((err, res) => {
-        if (err) {
-          return err;
-        }
-        return h.continue;
-      })
+    // }).then(LogedIn => {
+    //   return Account.find((err, res) => {
+    //     if (err) {
+    //       return err;
+    //     }
+    //     return h.continue;
+    //   })
     }).catch(err => { return { err } })
   });
   
@@ -38,32 +41,26 @@ exports.plugin = {
       config: {
         pre: [{ method: Authentication }],
         handler: (req, h) => {
-      
           return Account.find((err, res) => {
             if (err) {
               return err;
             }
             return res;
           })
-          // return jwt.verify(token,privateKey, function(err, decoded) {
-          //   if (err) {
-          //     return {err}; 
-          //   }
-          //   let loginName = decoded.data;
-          //   return Account.findOne({
-          //     loginName: loginName
-          //   }).then(LogedIn =>{
-          //     return Account.find((err, res) => {
-          //       if (err) {
-          //         return err;
-          //       }
-          //       return res;
-          //     })
-          //   }).catch(err=>{return {err}})
-          // });
         }
       },
+    }),
 
+    server.route({
+      method: 'GET',
+      path: '/account',
+      config: {
+        pre: [{ method: Authentication, assign: 'user' }],
+        handler: (req, h) => {
+          console.log(req.pre.user);
+          return req.pre.user;
+        }
+      },
     }),
 
       server.route({
@@ -103,7 +100,8 @@ exports.plugin = {
           "loginName": loginName
         }).then(userFound => {
           var passwordFound = userFound.password;
-          return bcrypt.compare(password, passwordFound).then(success => {
+          return bcrypt.compare(password, passwordFound)
+          .then(success => {
             var token = jwt.sign({
               data: loginName
             }, privateKey, { expiresIn: '1h' });
