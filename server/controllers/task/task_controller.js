@@ -48,7 +48,6 @@ module.exports.updateTask = async (req, h) => {
   try {
     let taskID = req.params.id;
     let taskName = req.payload.task_name;
-    // let tasks = await module.exports.updateTask(taskID, taskName);
     let tasks = await Tasks.updateTask(taskID, taskName);
     return h.response(tasks).code(200);
   } catch (error) {
