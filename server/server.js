@@ -19,9 +19,9 @@ server.app.db = mongoose.connect(
 const init = async () => {
   await server
     .register([
-      {plugin :require('./routes/todo')},
-      {plugin: require('./routes/tasks')},
-      {plugin: require('./routes/accounts')}
+      {plugin :require('./routes/todo/todo')},
+      {plugin: require('./routes/task/tasks')},
+      {plugin: require('./routes/account/accounts')}
     ] ,
       {
         routes: {

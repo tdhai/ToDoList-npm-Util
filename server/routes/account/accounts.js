@@ -1,6 +1,6 @@
 'use strict'
 const mongoose = require('mongoose')
-const Account = require('../models/Account')
+const Account = require('../../models/Account')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 

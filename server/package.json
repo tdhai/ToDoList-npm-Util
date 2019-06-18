@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,17 @@
     "bcrypt": "^3.0.6",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.13"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/runtime": "^7.4.5",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0",
+    "jest-environment-enzyme": "^7.0.2",
+    "jest-enzyme": "^7.0.2",
+    "metro-react-native-babel-preset": "^0.54.1"
+  },
+  "jest": {
+    "setupFilesAfterEnv": []
   }
 }

@@ -10,4 +10,4 @@ const TaskSchema = new Schema({
   }
 })
 
-module.exports = User = mongoose.model('account', TaskSchema)
+module.exports = Account = mongoose.model('account', TaskSchema)

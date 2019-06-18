@@ -1,7 +1,7 @@
 'use strict'
 
 const mongoose = require('mongoose')
-const Task = require('../models/Task')
+const Task = require('../../models/Task')
 
 exports.plugin = {
     register: (server, option) => {
